@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('User', {
+    await queryInterface.createTable('Bar', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,7 +16,6 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        unique: true, // unique constraint
       },
       createdAt: {
         allowNull: false,
@@ -26,10 +25,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: { // User belongsTo Users 1:1
+          model: 'User',
+          key: 'id',
+        },
+        notNull: true,
+      },
     });
   },
   // eslint-disable-next-line
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('User');
+    await queryInterface.dropTable('Bar');
   },
 };
