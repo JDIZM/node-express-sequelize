@@ -14,7 +14,10 @@
     "db:create": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; createdb -U ${POSTGRES_USER} ${POSTGRES_DB}'",
     "db:import": "docker exec -i postgres-db /usr/bin/pg_restore -U postgres -d test < backup.sql",
     "db:copy": "docker cp backup.sql postgres-db:/home/backup.sql",
-    "db:backup": "docker exec postgres-db /usr/bin/pg_dump -U postgres test -Fc --no-owner > backup.sql"
+    "db:backup": "docker exec postgres-db /usr/bin/pg_dump -U postgres test -Fc --no-owner > backup.sql",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo",
+    "seed": "npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "",
