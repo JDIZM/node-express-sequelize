@@ -10,15 +10,14 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
-    await queryInterface.bulkInsert('Bar', [{
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'johndoe@example.com',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      userId: 1,
-    }]);
+     */
+    await queryInterface.bulkInsert("Bar", [
+      {
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: "1f63b2ad-4273-4fdd-b6a7-dcadf45a2cbe",
+      },
+    ]);
   },
 
   // eslint-disable-next-line
@@ -29,6 +28,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Bar', null, {});
+    await queryInterface.bulkDelete("Bar", null, {});
   },
 };

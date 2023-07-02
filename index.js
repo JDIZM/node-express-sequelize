@@ -1,30 +1,30 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
 
-const express = require('express');
-const db = require('./services/db');
+const express = require("express");
+const db = require("./services/db");
 
 const app = express();
 const port = 3000;
 
 const router = express.Router();
-const routes = require('./routes');
+const routes = require("./routes");
+
+app.use(express.json());
 
 app.use(router);
 routes(router);
 
-app.use(express.json());
-
 const connect = async () => {
   try {
-    console.log('Trying to connect to the database...');
+    console.log("Trying to connect to the database...");
     await db.authenticate();
-    console.log('Connection has been established successfully.');
+    console.log("Connection has been established successfully.");
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error("Unable to connect to the database:", error);
   }
 };
 

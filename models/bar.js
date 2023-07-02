@@ -1,6 +1,4 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Bar extends Model {
@@ -12,20 +10,23 @@ module.exports = (sequelize, DataTypes) => {
     // eslint-disable-next-line
     static associate(models) {
       // define association here
-      models.Bar.belongsTo(models.User, { foreignKey: 'userId' });
+      models.Bar.belongsTo(models.User, { foreignKey: "userId" });
     }
   }
-  Bar.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'Bar',
-    tableName: 'Bar',
-    freezeTableName: true,
-  });
-  // Bar.belongsTo(sequelize.models.User, { foreignKey: 'userId' });
+  Bar.init(
+    {
+      userId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "Bar",
+      tableName: "Bar",
+      freezeTableName: true,
+    }
+  );
+
   return Bar;
 };

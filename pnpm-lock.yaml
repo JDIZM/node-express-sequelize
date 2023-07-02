@@ -13,6 +13,7 @@ specifiers:
   prettier: ^2.8.8
   sequelize: ^6.32.1
   sequelize-cli: ^6.6.1
+  uuidv4: ^6.2.13
 
 dependencies:
   dotenv: 16.3.1
@@ -20,6 +21,7 @@ dependencies:
   pg: 8.11.1
   pg-hstore: 2.3.4
   sequelize: 6.32.1_pg-hstore@2.3.4+pg@8.11.1
+  uuidv4: 6.2.13
 
 devDependencies:
   eslint: 8.44.0
@@ -131,6 +133,10 @@ packages:
 
   /@types/node/20.3.3:
     resolution: {integrity: sha512-wheIYdr4NYML61AjC8MKj/2jrR/kDQri/CIpVoZwldwhnIrD/j9jIU5bJ8yBKuB2VhpFV7Ab6G2XkBjv9r9Zzw==}
+    dev: false
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: false
 
   /@types/validator/13.7.17:
@@ -2294,6 +2300,13 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    dev: false
+
+  /uuidv4/6.2.13:
+    resolution: {integrity: sha512-AXyzMjazYB3ovL3q051VLH06Ixj//Knx7QnUSi1T//Ie3io6CpsPu9nVMOx5MoLWh6xV0B9J0hIaxungxXUbPQ==}
+    dependencies:
+      '@types/uuid': 8.3.4
+      uuid: 8.3.2
     dev: false
 
   /validator/13.9.0:

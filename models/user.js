@@ -1,6 +1,7 @@
-const {
-  Model,
-} = require('sequelize');
+const { Model } = require("sequelize");
+
+// https://stackoverflow.com/questions/33313569/sequelize-create-is-not-a-function-error
+// const User = require('../models/user')(sequelize, Sequelize.DataTypes, Sequelize);
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -11,21 +12,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // console.log('static', models);
-      models.User.hasOne(models.Bar, { foreignKey: 'userId' });
+      models.User.hasOne(models.Bar, { foreignKey: "userId" });
     }
   }
-  User.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'User',
-    tableNameL: 'User',
-    freezeTableName: true,
-  });
+  User.init(
+    {
+      firstName: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "User",
+      tableName: "User",
+      freezeTableName: true,
+    }
+  );
 
-  // User.hasOne(Bar, { foreignKey: 'userId' });
   return User;
 };

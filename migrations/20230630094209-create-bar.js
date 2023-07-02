@@ -1,21 +1,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Bar', {
+    await queryInterface.createTable("Bar", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      firstName: {
-        type: Sequelize.STRING,
-      },
-      lastName: {
-        type: Sequelize.STRING,
-      },
-      email: {
-        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -25,11 +16,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      // https://sequelize.org/docs/v6/other-topics/naming-strategies/#when-defining-a-reference-key-in-a-model
       userId: {
-        type: Sequelize.INTEGER,
-        references: { // User belongsTo Users 1:1
-          model: 'User',
-          key: 'id',
+        type: Sequelize.UUID,
+        references: {
+          // Bar belongsTo User 1:1
+          model: "User",
+          key: "id",
         },
         notNull: true,
       },
@@ -37,6 +30,6 @@ module.exports = {
   },
   // eslint-disable-next-line
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Bar');
+    await queryInterface.dropTable("Bar");
   },
 };
