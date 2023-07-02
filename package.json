@@ -4,7 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev": "docker compose up -d && nodemon index.js",
+    "stop": "docker compose down",
+    "db:drop": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; dropdb --if-exists ${POSTGRES_DB} -U ${POSTGRES_USER}'",
+    "db:create": "docker compose start db && docker compose exec db sh -c 'export PGPASSWORD=${POSTGRES_PASSWORD}; createdb -U ${POSTGRES_USER} ${POSTGRES_DB}'",
+    "db:import": "docker exec -i postgres-db /usr/bin/pg_restore -U postgres -d test < backup.sql",
+    "db:copy": "docker cp backup.sql postgres-db:/home/backup.sql",
+    "db:backup": "docker exec postgres-db /usr/bin/pg_dump -U postgres test -Fc --no-owner > backup.sql"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +29,10 @@
   "devDependencies": {
     "eslint": "^8.43.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
     "sequelize-cli": "^6.6.1"
   }
 }
