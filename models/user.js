@@ -1,8 +1,4 @@
 const { Model } = require("sequelize");
-// const Bar = require("./bar");
-
-// https://stackoverflow.com/questions/33313569/sequelize-create-is-not-a-function-error
-// const User = require('../models/user')(sequelize, Sequelize.DataTypes, Sequelize);
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -12,8 +8,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      // FIXME static association methods are not being called.
       this.hasOne(models.Bar, { foreignKey: "userId" });
     }
   }

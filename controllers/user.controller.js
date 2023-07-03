@@ -1,9 +1,5 @@
 const { uuid } = require("uuidv4");
-const { DataTypes } = require("sequelize");
-
-const sequelize = require("../services/db");
-const User = require("../models/user")(sequelize, DataTypes);
-const Bar = require("../models/bar")(sequelize, DataTypes);
+const { User, Bar } = require("../models");
 
 const getUsers = async (req, res) => {
   try {

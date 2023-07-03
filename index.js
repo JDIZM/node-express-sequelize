@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const express = require("express");
+const logger = require("./services/logger");
 const db = require("./services/db");
 
 const app = express();
@@ -20,16 +21,15 @@ routes(router);
 
 const connect = async () => {
   try {
-    console.log("Trying to connect to the database...");
+    logger.info("Trying to connect to the database...");
     await db.authenticate();
-    console.log("Connection has been established successfully.");
+    logger.info("Connection has been established successfully.");
+    logger.info(`Server listening on port ${port}`);
   } catch (error) {
-    console.error("Unable to connect to the database:", error);
+    logger.error("Unable to connect to the database:", error);
   }
 };
 
-connect();
-
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  connect();
 });
