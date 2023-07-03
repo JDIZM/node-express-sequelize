@@ -65,9 +65,31 @@ const createUserWithBarAssociation = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const { firstName, lastName, email } = req.body;
+    const { id } = req.params;
+    await User.update(
+      {
+        firstName,
+        lastName,
+        email,
+      },
+      { where: { id } }
+    );
+
+    const updatedUser = await User.findByPk(id);
+
+    res.send({ updatedUser });
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+};
+
 module.exports = {
   createUser,
   createUserWithBarAssociation,
   getUserById,
   getUsers,
+  updateUser,
 };
