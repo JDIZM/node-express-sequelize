@@ -1,9 +1,3 @@
-const dotenv = require("dotenv");
-
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
-}
-
 const express = require("express");
 const logger = require("./services/logger");
 const db = require("./services/db");

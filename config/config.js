@@ -1,3 +1,10 @@
+const dotenv = require("dotenv");
+
+// Require dotenv here for migrations to work when using cli
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 module.exports = {
   development: {
     username: process.env.POSTGRES_USER,
