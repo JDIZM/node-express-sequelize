@@ -5,6 +5,7 @@
 - sequelize
 - postgresql
 - pnpm
+- docker
 
 ## Installation
 
@@ -26,7 +27,13 @@ curl https://get.volta.sh | bash
 
 ## Usage
 
-At first we will need to run the migrations and seed the db
+Spin up a local docker container with postgresql db using the following command:
+
+```
+docker compose up -d
+```
+
+Then we will need to run the migrations and seed the db
 
 ### run migrations
 
@@ -70,7 +77,7 @@ You should see a response like this with a user and it's associated bar model:
 }
 ```
 
-## Build with docker
+## Build the api with docker
 
 replace the `POSTGRES_HOST` with `host.docker.internal` in the .env file to run the app with docker.
 
